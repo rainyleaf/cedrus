@@ -1,7 +1,7 @@
 {
-  "name": "boilermaker",
+  "name": "boilerplate",
   "version": "1.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "Torri's modification of Fullstack's boilermaker repo. Basically boilermaker + redux groceries lab.",
   "engines": {
     "node": ">= 7.0.0"
   },
