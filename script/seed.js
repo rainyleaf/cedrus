@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Item} = require('../server/db/models')
+const {User, ClothingItem} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -12,10 +12,29 @@ async function seed() {
     User.create({email: 'murphy@email.com', password: '123'})
   ])
   const items = await Promise.all([
-    Item.create({userId: 1, category: 'shorts', imageUrl: 'https://www.rei.com/media/product/143643', dominantColor: 'red', heaviness: 1}),
-    Item.create({userId: 1, category: 'pants', imageUrl: 'https://oldnavy.gap.com/webcontent/0015/859/032/cn15859032.jpg', dominantColor: 'pink', heaviness: 3}),
-    Item.create({userId: 1, category: 'top', imageUrl: 'https://target.scene7.com/is/image/Target/GUEST_5722806b-5fc2-4cd0-b619-a7e5f2ea2726?wid=488&hei=488&fmt=pjpeg', dominantColor: 'blue', heaviness: 2}),
-
+    ClothingItem.create({
+      userId: 1,
+      category: 'shorts',
+      imageUrl: 'https://www.rei.com/media/product/143643',
+      dominantColor: 'red',
+      heaviness: 1
+    }),
+    ClothingItem.create({
+      userId: 1,
+      category: 'pants',
+      imageUrl:
+        'https://oldnavy.gap.com/webcontent/0015/859/032/cn15859032.jpg',
+      dominantColor: 'pink',
+      heaviness: 3
+    }),
+    ClothingItem.create({
+      userId: 1,
+      category: 'top',
+      imageUrl:
+        'https://target.scene7.com/is/image/Target/GUEST_5722806b-5fc2-4cd0-b619-a7e5f2ea2726?wid=488&hei=488&fmt=pjpeg',
+      dominantColor: 'blue',
+      heaviness: 2
+    })
   ])
 
   console.log(`seeded ${users.length} users`)

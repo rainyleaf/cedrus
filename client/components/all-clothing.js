@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
-import ClothingItem from './list-item'
+import ClothingItem from './clothing-item'
 import CreateItem from './create-item'
 import {connect} from 'react-redux'
 import {getItemsThunk} from '../store/clothing'
+import {Link} from 'react-router-dom'
 
-class Checklist extends Component {
+class AllClothing extends Component {
   constructor(props) {
     super(props)
   }
@@ -12,6 +13,7 @@ class Checklist extends Component {
     this.props.getItems()
   }
   render() {
+    console.log('PROPS: ', this.props)
     const clothingList = this.props.clothing.map(clothing => {
       return (
         <div key={clothing.id}>
@@ -23,7 +25,7 @@ class Checklist extends Component {
     })
     return (
       <div>
-        <h3 className="center">All Mittens</h3>
+        <h3 className="center">My Closet</h3>
         <div className="row">{clothingList}</div>
       </div>
     )
@@ -38,4 +40,4 @@ const mapDispatchToProps = dispatch => ({
   getItems: () => dispatch(getItemsThunk())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Checklist)
+export default connect(mapStateToProps, mapDispatchToProps)(AllClothing)

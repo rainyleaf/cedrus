@@ -5,8 +5,8 @@
  */
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
-export {default as Checklist} from './checklist'
-export {default as ListItem} from './list-item'
+export {default as AllClothing} from './all-clothing'
+export {default as ClothingItem} from './clothing-item'
 export {default as CreateItem} from './create-item'
 export {default as Form} from './form'
 export {Login, Signup} from './auth-form'

@@ -10,19 +10,19 @@ const SHOW_DONE = 'SHOW_DONE'
 const SHOW_ACTIVE = 'SHOW_ACTIVE'
 
 //action creator
-const getItems = items => ({
+const getItems = clothing => ({
   type: GET_ITEMS,
-  items
+  clothing
 })
 
-const addItem = item => ({
+const addItem = clothing => ({
   type: ADD_ITEM,
-  item
+  clothing
 })
 
-export const toggleDone = item => ({
+export const toggleDone = clothing => ({
   type: TOGGLE_ITEM,
-  item
+  clothing
 })
 
 export const setVisibilityFilter = visFilter => ({
@@ -32,16 +32,16 @@ export const setVisibilityFilter = visFilter => ({
 
 export const getItemsThunk = () => async dispatch => {
   try {
-    const res = await axios.get('/api/items/')
+    const res = await axios.get('/api/clothing/')
     dispatch(getItems(res.data))
   } catch (error) {
     console.error(error)
   }
 }
 
-export const addItemThunk = item => async dispatch => {
+export const addItemThunk = clothing => async dispatch => {
   try {
-    const res = await axios.post('/api/items', item)
+    const res = await axios.post('/api/clothing', clothing)
     dispatch(addItem(res.data))
   } catch (error) {
     console.error(error)
@@ -49,22 +49,15 @@ export const addItemThunk = item => async dispatch => {
 }
 
 const defaultState = {
-  items: [],
-  visFilter: SHOW_ALL
+  clothing: []
 }
 
 export default function(state = defaultState, action) {
   switch (action.type) {
     case GET_ITEMS:
-      return {...state, items: action.items}
+      return {...state, clothing: action.clothing}
     case ADD_ITEM:
-      return {...state, items: [...state.items, action.item]}
-    case TOGGLE_ITEM:
-      action.item.done = !action.item.done
-      //change so that this isn't adding a new item every time
-      return {...state, items: [...state.items, action.item]}
-    case SET_VISIBILITY_FILTER:
-      return {...state, visFilter: action.visFilter}
+      return {...state, clothing: [...state.clothing, action.clothing]}
     default:
       return state
   }

@@ -4,9 +4,10 @@ import {connect} from 'react-redux'
 import {addItemThunk} from '../store/clothing'
 
 const defaultState = {
-  text: '',
-  done: false,
-  errorMessage: ''
+  category: '',
+  imageUrl: '',
+  dominantColor: '',
+  heaviness: 0
 }
 
 class CreateItem extends Component {
