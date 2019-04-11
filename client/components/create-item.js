@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Form from './form'
 import {connect} from 'react-redux'
-import {addItemThunk} from '../store/item'
+import {addItemThunk} from '../store/clothing'
 
 const defaultState = {
   text: '',
