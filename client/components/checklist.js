@@ -11,15 +11,13 @@ class Checklist extends Component {
     await this.props.getItems()
   }
   render() {
-    console.log('PROPS: ', this.props)
-    console.log('GETITEMSTHUNK: ', getItemsThunk)
     return (
       <ul>
         {this.props.items.map(item => (
           <ListItem
-            key={item.id}
+            key={item.text}
             {...item}
-            onClick={() => this.props.toggleDone(item.id)}
+            onClick={() => this.props.toggleDone(item)}
           />
         ))}
       </ul>
@@ -32,9 +30,9 @@ const mapStateToProps = state => {
   const showActive = state.item.items.filter(item => !item.done)
 
   const filterFunc = function() {
-    if (state.visFilter === 'SHOW_DONE') {
+    if (state.item.visFilter === 'SHOW_DONE') {
       return showDone
-    } else if (state.visFilter === 'SHOW_ACTIVE') {
+    } else if (state.item.visFilter === 'SHOW_ACTIVE') {
       return showActive
     } else {
       return state.item.items
@@ -47,7 +45,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  toggleDone: itemId => dispatch(toggleDone(itemId)),
+  toggleDone: item => dispatch(toggleDone(item)),
   getItems: () => dispatch(getItemsThunk())
 })
 

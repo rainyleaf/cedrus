@@ -1,11 +1,11 @@
 import React from 'react'
 
-const ListItem = ({onClick, bought, text}) => {
+const ListItem = ({onClick, done, text}) => {
   return (
     <div>
       <li
         onClick={onClick}
-        style={{textDecoration: bought ? 'line-through' : 'none'}}
+        style={{textDecoration: done ? 'line-through' : 'none'}}
       >
         {text}
       </li>

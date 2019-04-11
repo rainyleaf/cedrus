@@ -20,7 +20,7 @@ export const addItem = item => ({
   item
 })
 
-export const toggleItem = item => ({
+export const toggleDone = item => ({
   type: TOGGLE_ITEM,
   item
 })
@@ -54,6 +54,7 @@ export default function(state = defaultState, action) {
       return {...state, items: [...state.items, action.item]}
     case TOGGLE_ITEM:
       action.item.done = !action.item.done
+      //change so that this isn't adding a new item every time
       return {...state, items: [...state.items, action.item]}
     case SET_VISIBILITY_FILTER:
       return {...state, visFilter: action.visFilter}
