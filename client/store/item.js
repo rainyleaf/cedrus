@@ -15,7 +15,7 @@ const getItems = items => ({
   items
 })
 
-export const addItem = item => ({
+const addItem = item => ({
   type: ADD_ITEM,
   item
 })
@@ -31,10 +31,18 @@ export const setVisibilityFilter = visFilter => ({
 })
 
 export const getItemsThunk = () => async dispatch => {
-  console.log('made it into the thunk')
   try {
     const res = await axios.get('/api/items/')
     dispatch(getItems(res.data))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const addItemThunk = item => async dispatch => {
+  try {
+    const res = await axios.post('/api/items', item)
+    dispatch(addItem(res.data))
   } catch (error) {
     console.error(error)
   }
@@ -46,7 +54,6 @@ const defaultState = {
 }
 
 export default function(state = defaultState, action) {
-  console.log('ACTION: ', action)
   switch (action.type) {
     case GET_ITEMS:
       return {...state, items: action.items}

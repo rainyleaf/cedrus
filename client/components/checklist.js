@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import ListItem from './list-item'
+import CreateItem from './create-item'
 import {connect} from 'react-redux'
 import {getItemsThunk, toggleDone} from '../store/item'
 
@@ -12,15 +13,22 @@ class Checklist extends Component {
   }
   render() {
     return (
-      <ul>
-        {this.props.items.map(item => (
-          <ListItem
-            key={item.text}
-            {...item}
-            onClick={() => this.props.toggleDone(item)}
-          />
-        ))}
-      </ul>
+      <div>
+        <ul>
+          {this.props.items.map(item => (
+            <ListItem
+              key={item.text}
+              {...item}
+              onClick={() => this.props.toggleDone(item)}
+            />
+          ))}
+        </ul>
+        <div>
+          <p />
+          <h5>Add a new item:</h5>
+          <CreateItem />
+        </div>
+      </div>
     )
   }
 }
